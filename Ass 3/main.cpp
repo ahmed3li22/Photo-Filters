@@ -6,10 +6,9 @@ void vertical_flip(string imagename);
 void horizontal_flip(string imagename);
 void black_and_white(string imagename);
 int grey(string file);
-string blacken(string file);
-string whiten(string file);
+int blacken(string file);
+int whiten(string file);
 int merges(string file,string file2);
-string edge (string file);
 int new2(string file);
 int menu();
 int menu2();
@@ -26,7 +25,7 @@ int main(){
                 }
             if(x==0)
                 {
-                    cout<<"Please enter filename with the extension"<<endl;
+                    cout << "Enter the image name with the extension: ";
                     string file;
                     cin>>file;
                     grey(file);
@@ -40,17 +39,19 @@ int main(){
                     getline(cin,choose);
                     if(choose =="A" || choose =="a")
                         {
-                            cout<<"Please enter filename with the extension"<<endl;
+                            cout << "Enter the image name with the extension: ";
                             string file;
                             cin>>file;
                             whiten(file);
+                            z=0;
                         }
                     else if(choose =="B" || choose =="b")
                         {
-                            cout<<"Please enter filename with the extension"<<endl;
+                            cout << "Enter the image name with the extension: ";
                             string file;
                             cin>>file;
                             blacken(file);
+                            z=0;
                         }
                 }
             else if(x==2)
@@ -62,8 +63,40 @@ int main(){
                     cout<<"Please enter the Second filename with the extension"<<endl;
                     cin>>file2;
                     merges(file,file2);
+                    z=0;
                 }
             else if(x==3)
+                {
+                    cout << "Enter the image name with the extension: ";
+                    string file;
+                    cin>>file;
+                    black_and_white(file);
+                    z=0;
+                }
+            else if(x==4)
+                {
+                    cout<<"A) Horizontal Flip"<<endl;
+                    cout<<"B) Vertical Flip"<<endl;
+                    string choose;
+                    getline(cin,choose);
+                    if(choose =="A" || choose =="a")
+                        {
+                            cout << "Enter the image name with the extension: ";
+                            string file;
+                            cin>>file;
+                            horizontal_flip(file);
+                            z=0;
+                        }
+                    else if(choose =="B" || choose =="b")
+                        {
+                            cout << "Enter the image name with the extension: ";
+                            string file;
+                            cin>>file;
+                            vertical_flip(file);
+                            z=0;
+                        }
+                }
+            else if(x==5)
                 {
                     break;
                 }
@@ -98,15 +131,14 @@ int grey(string file){
                         }
                 }
         }
-    cout<<"The new image name with the extension"<<endl;
-    cin>>file;
+    cout << "Enter the new image name with the extension: ";
     image.saveImage(file);
     system(file.c_str());
 }
 
 
 
-string blacken(string file){
+int  blacken(string file){
     Image image(file);
     for(int x=0;x<image.width;x++)
         {
@@ -119,7 +151,7 @@ string blacken(string file){
                         }
                 }
         }
-    cout<<"new name"<<endl;
+    cout << "Enter the new image name with the extension: ";
     cin>>file;
     image.saveImage(file);
     system(file.c_str());
@@ -128,8 +160,7 @@ string blacken(string file){
 }
 
 
-
-string whiten(string file){
+int whiten(string file){
     Image image(file);
     unsigned int number =0;
     for(int x=0;x<image.width;x++)
@@ -145,13 +176,12 @@ string whiten(string file){
                         }
                 }
         }
-    cout<<"new name"<<endl;
+    cout << "Enter the new image name with the extension: ";
     cin>>file;
     image.saveImage(file);
     system(file.c_str());
 
 }
-
 
 
 int merges(string file,string file2){
@@ -169,46 +199,10 @@ int merges(string file,string file2){
                         }
                 }
         }
-    cout<<"new name"<<endl;
+    cout << "Enter the new image name with the extension: ";
     cin>>file;
     image2.saveImage(file);
     system(file.c_str());
-}
-
-
-string edge(string file){
-    Image image(file);
-
-    for(int x=0;x<image.width;x++)
-        {
-            for(int y=0;y<image.height;y++)
-                {
-                    unsigned int ave=0;
-                    for(int z=0;z<3;z++)
-                        {
-                            ave+=image(x,y,z);
-                        }
-                    ave=ave/3;
-                    if(ave>127)
-                        {
-                            ave=255;
-                        }
-                    else
-                        {
-                            ave=0;
-                        }
-                    for(int z=0;z<3;z++)
-                        {
-                            image(x,y,z)=ave;
-                        }
-                }
-        }
-    cout<<"new name"<<endl;
-    cin>>file;
-    image.saveImage(file);
-    return file;
-    //system(file.c_str());
-
 }
 
 
@@ -274,7 +268,9 @@ int menu(){
             cout<<"A) Grayscale Filter"<<endl;
             cout<<"B) Darken and Lighten Filter"<<endl;
             cout<<"C) Merge Images"<<endl;
-            cout<<"D) Exit the program"<<endl;
+            cout<<"D) Black and White Filter"<<endl;
+            cout<<"E) Flip image Filter "<<endl;
+            cout<<"F) Exit the program "<<endl;
             //cout<<" "<<endl;
             string choose;
             getline(cin,choose);
@@ -293,6 +289,14 @@ int menu(){
             else if(choose =="D" || choose =="d")
                 {
                     return 3;
+                }
+            else if(choose =="E" || choose =="e")
+                {
+                    return 4;
+                }
+            else if(choose =="F" || choose =="f")
+                {
+                    return 5;
                 }
             else
                 {
@@ -332,6 +336,8 @@ int menu2(){
         }
 
 }
+
+
 void horizontal_flip(string imagename) {
     Image image(imagename);
     for (int i = 0; i < image.width/2; i++) {
@@ -372,6 +378,8 @@ void vertical_flip(string imagename){
     cout << "Image saved as " << file << endl;
     system(file.c_str());
 }
+
+
 void black_and_white(string imagename) {
     Image image(imagename);
     for (int i = 0; i < image.width; i++) {
@@ -383,7 +391,7 @@ void black_and_white(string imagename) {
             avg /= 3;
 
             for (int k = 0; k < image.channels; k++) {
-                if (avg > 123) {
+                if (avg > 127) {
                     image(i, j, k) = 255;
                 } else {
                     image(i, j, k) = 0;
@@ -398,6 +406,6 @@ void black_and_white(string imagename) {
     image.saveImage(file);
     cout << "Image saved as " << file << endl;
     system(file.c_str());
-    
+
 }
 
