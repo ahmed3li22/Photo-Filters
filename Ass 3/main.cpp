@@ -2,7 +2,9 @@
 #include "image_class.h"
 
 using namespace std;
-
+void vertical_flip(string imagename);
+void horizontal_flip(string imagename);
+void black_and_white(string imagename);
 int grey(string file);
 string blacken(string file);
 string whiten(string file);
@@ -330,5 +332,72 @@ int menu2(){
         }
 
 }
+void horizontal_flip(string imagename) {
+    Image image(imagename);
+    for (int i = 0; i < image.width/2; i++) {
+        for (int j = 0; j < image.height; j++) {
+            for(int k=0;k<image.channels;k++) {
+                pixel temp = image(i, j, k);
+                image(i, j, k) = image(image.width - i - 1, j, k);
+                image(image.width - i - 1,j , k) = temp;
+            }
+        }
+    }
 
+    cout << "Enter the new image name with the extension: ";
+    string file;
+    cin >> file;
+    image.saveImage(file);
+    cout << "Image saved as " << file << endl;
+    system(file.c_str());
+}
+
+
+void vertical_flip(string imagename){
+    Image image(imagename);
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height / 2; j++) {
+            for(int k=0;k<image.channels;k++) {
+                pixel temp = image(i, j, k);
+                image(i, j, k) = image(i, image.height - j - 1, k);
+                image(i, image.height - j - 1, k) = temp;
+            }
+        }
+    }
+
+    cout << "Enter the new image name with the extension: ";
+    string file;
+    cin >> file;
+    image.saveImage(file);
+    cout << "Image saved as " << file << endl;
+    system(file.c_str());
+}
+void black_and_white(string imagename) {
+    Image image(imagename);
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            int avg = 0;
+            for (int k = 0; k < image.channels; k++) {
+                avg += image(i, j, k);
+            }
+            avg /= 3;
+
+            for (int k = 0; k < image.channels; k++) {
+                if (avg > 123) {
+                    image(i, j, k) = 255;
+                } else {
+                    image(i, j, k) = 0;
+                }
+            }
+        }
+    }
+
+    cout << "Enter the new image name with the extension: ";
+    string file;
+    cin >> file;
+    image.saveImage(file);
+    cout << "Image saved as " << file << endl;
+    system(file.c_str());
+    
+}
 
