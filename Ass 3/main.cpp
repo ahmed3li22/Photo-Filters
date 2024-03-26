@@ -1,7 +1,11 @@
 #include <iostream>
 #include "image_class.h"
+#include <string>
+#include <cmath>
+#include <algorithm>
 
 using namespace std;
+void resize_image(string image_name);
 void vertical_flip(string imagename);
 void horizontal_flip(string imagename);
 void black_and_white(string imagename);
@@ -408,4 +412,53 @@ void black_and_white(string imagename) {
     system(file.c_str());
 
 }
+void resize_image(string image_name) {
+    Image image(image_name);
 
+    int original_width = image.width;
+    int original_height = image.height;
+
+    cout << "Do you want to resize by ratio or new dimensions?\n"
+         << "1) Resize by ratio\n"
+         << "2) Resize by new dimensions\n";
+    int choice;
+    cin >> choice;
+
+    int new_width, new_height;
+    if (choice == 1) {
+        double ratio;
+        cout << "Enter the resizing ratio: ";
+        cin >> ratio;
+        new_width = static_cast<int>(original_width * ratio);
+        new_height = static_cast<int>(original_height * ratio);
+    } else if (choice == 2) {
+        cout << "Enter the new width: ";
+        cin >> new_width;
+        cout << "Enter the new height: ";
+        cin >> new_height;
+    } else {
+        cout << "Invalid choice. Exiting.\n";
+        return;
+    }
+
+    Image new_image(new_width, new_height);
+
+    for (int x = 0; x < new_width; x++) {
+        for (int y = 0; y < new_height; y++) {
+            int src_x = static_cast<int>(round(static_cast<double>(x) / new_width * original_width));
+            int src_y = static_cast<int>(round(static_cast<double>(y) / new_height * original_height));
+            src_x = min(src_x, original_width - 1);
+            src_y = min(src_y, original_height - 1);
+
+            for (int k = 0; k < new_image.channels; k++) {
+                new_image(x, y, k) = image(src_x, src_y, k);
+            }
+        }
+    }
+
+    cout << "Enter the new image name with the extension: ";
+    string file;
+    cin >> file;
+    new_image.saveImage(file);
+    cout << "Image saved as " << file << endl;
+}
