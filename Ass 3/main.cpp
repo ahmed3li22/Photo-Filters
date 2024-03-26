@@ -5,6 +5,7 @@
 #include <algorithm>
 
 using namespace std;
+void crop_image(string image_name);
 void resize_image(string image_name);
 void vertical_flip(string imagename);
 void horizontal_flip(string imagename);
@@ -456,6 +457,37 @@ void resize_image(string image_name) {
         }
     }
 
+    cout << "Enter the new image name with the extension: ";
+    string file;
+    cin >> file;
+    new_image.saveImage(file);
+    cout << "Image saved as " << file << endl;
+}
+void crop_image(string image_name){
+    Image image(image_name);
+    int start_x,start_y,new_width,new_height;
+    while(true){
+        cout<<"enter where to crop from width\n";
+        cin>>start_x;
+        cout<<"enter where to crop from height\n";
+        cin>>start_y;
+        cout<<"enter the width of the image to be cropped\n";
+        cin>>new_width;
+        cout<<"enter the height of the image to be cropped\n";
+        cin>>new_height;
+        if(start_x+new_width<image.width &&start_y+new_height<image.height){
+            break;
+        }
+        cout<<"make sure you are in the boundaries\n";
+    }
+    Image new_image(new_width, new_height);
+    for(int i =0;i<new_width;i++){
+        for(int j=0;j<new_height;j++){
+            for(int k=0;k<image.channels;k++){
+                new_image(i, j, k)=image(i+start_x, j+new_height,k);
+            }
+        }
+    }
     cout << "Enter the new image name with the extension: ";
     string file;
     cin >> file;
