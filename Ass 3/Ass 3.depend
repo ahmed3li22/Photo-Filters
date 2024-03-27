@@ -35,9 +35,12 @@
 	<math.h>
 	<assert.h>
 
-1711370961 source:e:\collage\codes\project\fuck\main.cpp
+1711550112 source:e:\collage\codes\project\fuck\main.cpp
 	<iostream>
 	"image_class.h"
+	<string>
+	<cmath>
+	<algorithm>
 
 1710858141 e:\collage\codes\project\fuck\image_class.h
 	"stb_image.h"

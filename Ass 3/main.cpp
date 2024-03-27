@@ -3,6 +3,7 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 void crop_image(string image_name);
@@ -31,10 +32,40 @@ int main(){
             if(x==0)
                 {
                     cout << "Enter the image name with the extension: ";
-                    string file;
-                    cin>>file;
-                    grey(file);
-                    z=0;
+                    while(true)
+                    {
+                        string file;
+                        getline(cin,file);
+                        ifstream check;
+                        check.open(file);
+                        size_t id =0;
+                        string rest=file.substr(file.find_last_of(".") + 1);
+                        if((id =file.find(".")) != std::string::npos)
+                            {
+                                if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                    {
+                                    if(check)
+                                        {
+                                            grey(file);
+                                            z=0;
+                                            break;
+                                        }
+                                    else
+                                        {
+                                          cout<<"Image not found, Please enter an image that exist: ";
+                                        }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the correct extension : ";
+                                    }
+                            }
+                        else
+                            {
+                                cout<<"Please enter the image name with the extension: ";
+                            }
+
+                    }
                 }
             else if(x==1)
                 {
@@ -45,38 +76,189 @@ int main(){
                     if(choose =="A" || choose =="a")
                         {
                             cout << "Enter the image name with the extension: ";
-                            string file;
-                            cin>>file;
-                            whiten(file);
-                            z=0;
+                            while(true)
+                            {
+                                string file;
+                                getline(cin,file);
+                                ifstream check;
+                                check.open(file);
+                                size_t id =0;
+                                string rest=file.substr(file.find_last_of(".") + 1);
+                                if((id =file.find(".")) != std::string::npos)
+                                    {
+                                        if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                            {
+                                            if(check)
+                                                {
+                                                    whiten(file);
+                                                    z=0;
+                                                    break;
+                                                }
+                                            else
+                                                {
+                                                  cout<<"Image not found, Please enter an image that exist: ";
+                                                }
+                                            }
+                                        else
+                                            {
+                                                cout<<"Please enter the image name with the correct extension : ";
+                                            }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the extension: ";
+                                    }
+                            }
+
                         }
                     else if(choose =="B" || choose =="b")
                         {
-                            cout << "Enter the image name with the extension: ";
-                            string file;
-                            cin>>file;
-                            blacken(file);
-                            z=0;
+                                                        cout << "Enter the image name with the extension: ";
+                            while(true)
+                            {
+                                string file;
+                                getline(cin,file);
+                                ifstream check;
+                                check.open(file);
+                                size_t id =0;
+                                string rest=file.substr(file.find_last_of(".") + 1);
+                                if((id =file.find(".")) != std::string::npos)
+                                    {
+                                        if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                            {
+                                            if(check)
+                                                {
+                                                    blacken(file);
+                                                    z=0;
+                                                    break;
+                                                }
+                                            else
+                                                {
+                                                  cout<<"Image not found, Please enter an image that exist: ";
+                                                }
+                                            }
+                                        else
+                                            {
+                                                cout<<"Please enter the image name with the correct extension : ";
+                                            }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the extension: ";
+                                    }
+                            }
+
                         }
                 }
             else if(x==2)
                 {
-                    cout<<"Please enter the First filename with the extension"<<endl;
+                    cout << "Enter the image name with the extension: ";
                     string file;
-                    cin>>file;
-                    string file2;
-                    cout<<"Please enter the Second filename with the extension"<<endl;
-                    cin>>file2;
-                    merges(file,file2);
-                    z=0;
+                    while(true)
+                    {
+                        string file;
+                        getline(cin,file);
+                        ifstream check;
+                        check.open(file);
+                        size_t id =0;
+                        string rest=file.substr(file.find_last_of(".") + 1);
+                        if((id =file.find(".")) != std::string::npos)
+                            {
+                                if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                    {
+                                    if(check)
+                                        {
+                                            break;
+                                        }
+                                    else
+                                        {
+                                          cout<<"Image not found, Please enter an image that exist: ";
+                                        }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the correct extension : ";
+                                    }
+                            }
+                        else
+                            {
+                                cout<<"Please enter the image name with the extension: ";
+                            }
+                    }
+
+                                                cout << "Enter the image name with the extension: ";
+                    while(true)
+                    {
+                        string file2;
+                        getline(cin,file2);
+                        ifstream check;
+                        check.open(file2);
+                        size_t id =0;
+                        string rest=file2.substr(file2.find_last_of(".") + 1);
+                        if((id =file2.find(".")) != std::string::npos)
+                            {
+                                if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                    {
+                                    if(check)
+                                        {
+                                            merges(file,file2);
+                                            z=0;
+                                            break;
+                                        }
+                                    else
+                                        {
+                                          cout<<"Image not found, Please enter an image that exist: ";
+                                        }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the correct extension : ";
+                                    }
+                            }
+                        else
+                            {
+                                cout<<"Please enter the image name with the extension: ";
+                            }
+                    }
+
                 }
             else if(x==3)
                 {
                     cout << "Enter the image name with the extension: ";
-                    string file;
-                    cin>>file;
-                    black_and_white(file);
-                    z=0;
+                    while(true)
+                    {
+                        string file;
+                        getline(cin,file);
+                        ifstream check;
+                        check.open(file);
+                        size_t id =0;
+                        string rest=file.substr(file.find_last_of(".") + 1);
+                        if((id =file.find(".")) != std::string::npos)
+                            {
+                                if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                    {
+                                    if(check)
+                                        {
+                                            black_and_white(file);
+                                            z=0;
+                                            break;
+                                        }
+                                    else
+                                        {
+                                          cout<<"Image not found, Please enter an image that exist: ";
+                                        }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the correct extension : ";
+                                    }
+                            }
+                        else
+                            {
+                                cout<<"Please enter the image name with the extension: ";
+                            }
+                    }
+
                 }
             else if(x==4)
                 {
@@ -87,21 +269,157 @@ int main(){
                     if(choose =="A" || choose =="a")
                         {
                             cout << "Enter the image name with the extension: ";
-                            string file;
-                            cin>>file;
-                            horizontal_flip(file);
-                            z=0;
+                            while(true)
+                            {
+                                string file;
+                                getline(cin,file);
+                                ifstream check;
+                                check.open(file);
+                                size_t id =0;
+                                string rest=file.substr(file.find_last_of(".") + 1);
+                                if((id =file.find(".")) != std::string::npos)
+                                    {
+                                        if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                            {
+                                            if(check)
+                                                {
+                                                    horizontal_flip(file);
+                                                    z=0;
+                                                    break;
+                                                }
+                                            else
+                                                {
+                                                  cout<<"Image not found, Please enter an image that exist: ";
+                                                }
+                                            }
+                                        else
+                                            {
+                                                cout<<"Please enter the image name with the correct extension : ";
+                                            }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the extension: ";
+                                    }
+                            }
+
                         }
                     else if(choose =="B" || choose =="b")
                         {
                             cout << "Enter the image name with the extension: ";
-                            string file;
-                            cin>>file;
-                            vertical_flip(file);
-                            z=0;
+                            while(true)
+                            {
+                                string file;
+                                getline(cin,file);
+                                ifstream check;
+                                check.open(file);
+                                size_t id =0;
+                                string rest=file.substr(file.find_last_of(".") + 1);
+                                if((id =file.find(".")) != std::string::npos)
+                                    {
+                                        if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                            {
+                                            if(check)
+                                                {
+                                                    vertical_flip(file);
+                                                    z=0;
+                                                    break;
+                                                }
+                                            else
+                                                {
+                                                  cout<<"Image not found, Please enter an image that exist: ";
+                                                }
+                                            }
+                                        else
+                                            {
+                                                cout<<"Please enter the image name with the correct extension : ";
+                                            }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the extension: ";
+                                    }
+                            }
+
                         }
                 }
             else if(x==5)
+                {
+                    cout << "Enter the image name with the extension: ";
+                    while(true)
+                    {
+                        string file;
+                        getline(cin,file);
+                        ifstream check;
+                        check.open(file);
+                        size_t id =0;
+                        string rest=file.substr(file.find_last_of(".") + 1);
+                        if((id =file.find(".")) != std::string::npos)
+                            {
+                                if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                    {
+                                    if(check)
+                                        {
+                                            resize_image(file);
+                                            z=0;
+                                            break;
+                                        }
+                                    else
+                                        {
+                                          cout<<"Image not found, Please enter an image that exist: ";
+                                        }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the correct extension : ";
+                                    }
+                            }
+                        else
+                            {
+                                cout<<"Please enter the image name with the extension: ";
+                            }
+                    }
+
+                }
+            else if(x==6)
+                {
+                    cout << "Enter the image name with the extension: ";
+                    while(true)
+                    {
+                        string file;
+                        getline(cin,file);
+                        ifstream check;
+                        check.open(file);
+                        size_t id =0;
+                        string rest=file.substr(file.find_last_of(".") + 1);
+                        if((id =file.find(".")) != std::string::npos)
+                            {
+                                if(rest == "tga" || rest == "bmp" || rest == " pbg" || rest == "jpg" || rest == "jpeg")
+                                    {
+                                    if(check)
+                                        {
+                                            crop_image(file);
+                                            z=0;
+                                            break;
+                                        }
+                                    else
+                                        {
+                                          cout<<"Image not found, Please enter an image that exist: ";
+                                        }
+                                    }
+                                else
+                                    {
+                                        cout<<"Please enter the image name with the correct extension : ";
+                                    }
+                            }
+                        else
+                            {
+                                cout<<"Please enter the image name with the extension: ";
+                            }
+                    }
+
+                }
+            else if(x==7)
                 {
                     break;
                 }
@@ -137,10 +455,10 @@ int grey(string file){
                 }
         }
     cout << "Enter the new image name with the extension: ";
+    cin>>file;
     image.saveImage(file);
     system(file.c_str());
 }
-
 
 
 int  blacken(string file){
@@ -274,8 +592,10 @@ int menu(){
             cout<<"B) Darken and Lighten Filter"<<endl;
             cout<<"C) Merge Images"<<endl;
             cout<<"D) Black and White Filter"<<endl;
-            cout<<"E) Flip image Filter "<<endl;
-            cout<<"F) Exit the program "<<endl;
+            cout<<"E) Flip Image Filter "<<endl;
+            cout<<"F) resize Image "<<endl;
+            cout<<"G) Crop Image "<<endl;
+            cout<<"H) Exit the program "<<endl;
             //cout<<" "<<endl;
             string choose;
             getline(cin,choose);
@@ -302,6 +622,14 @@ int menu(){
             else if(choose =="F" || choose =="f")
                 {
                     return 5;
+                }
+            else if(choose =="G" || choose =="g")
+                {
+                    return 6;
+                }
+            else if(choose =="H" || choose =="h")
+                {
+                    return 7;
                 }
             else
                 {
@@ -413,6 +741,8 @@ void black_and_white(string imagename) {
     system(file.c_str());
 
 }
+
+
 void resize_image(string image_name) {
     Image image(image_name);
 
@@ -422,17 +752,17 @@ void resize_image(string image_name) {
     cout << "Do you want to resize by ratio or new dimensions?\n"
          << "1) Resize by ratio\n"
          << "2) Resize by new dimensions\n";
-    int choice;
-    cin >> choice;
+    string choice;
+    getline(cin,choice);
 
     int new_width, new_height;
-    if (choice == 1) {
+    if (choice == "1") {
         double ratio;
         cout << "Enter the resizing ratio: ";
         cin >> ratio;
         new_width = static_cast<int>(original_width * ratio);
         new_height = static_cast<int>(original_height * ratio);
-    } else if (choice == 2) {
+    } else if (choice == "2") {
         cout << "Enter the new width: ";
         cin >> new_width;
         cout << "Enter the new height: ";
@@ -463,6 +793,8 @@ void resize_image(string image_name) {
     new_image.saveImage(file);
     cout << "Image saved as " << file << endl;
 }
+
+
 void crop_image(string image_name){
     Image image(image_name);
     int start_x,start_y,new_width,new_height;
