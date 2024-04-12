@@ -36,7 +36,7 @@ Image merges(Image &image,Image image2);
 Image blur2(Image &image);
 Image Edge_Detection(Image &image);
 Image grey2(Image &image);
-
+Image TV(Image &image);
 
 int main(){
     int x;
@@ -178,6 +178,10 @@ int main(){
                         }
                     else if(x==9)
                         {
+                            TV(image);
+                        }
+                    else if(x==10)
+                        {
                             cout<<"Do you want to save it on the same file ?"<<endl;
                             cout<<"A) Yes"<<endl;
                             cout<<"B) No"<<endl;
@@ -224,7 +228,7 @@ int main(){
                                         }
                                 }
                         }
-                    else if(x==10)
+                    else if(x==11)
                         {
 
                             cout<<"Do you want to save the image before loading another image ?"<<endl;
@@ -292,7 +296,7 @@ int main(){
                                         }
                                 }
                         }
-                    else if(x==11)
+                    else if(x==12)
                         {
                             cout<<"Do you want to save the image before exiting ?"<<endl;
                             cout<<"A) Yes "<<endl;
@@ -387,9 +391,10 @@ int menu(int x){
             cout<<"G) Resize Image "<<endl;
             cout<<"H) Merge Images "<<endl;
             cout<<"I) Edge Detection "<<endl;
-            cout<<"J) Save Image "<<endl;
-            cout<<"K) Load New Image "<<endl;
-            cout<<"L) Exit the program "<<endl;
+            cout<<"J) T.V look "<<endl;
+            cout<<"K) Save Image "<<endl;
+            cout<<"L) Load New Image "<<endl;
+            cout<<"M) Exit the program "<<endl;
             string choose;
             getline(cin,choose);
             while(x<1)
@@ -444,6 +449,10 @@ int menu(int x){
             else if(choose =="L" || choose =="l")
                 {
                     return 11;
+                }
+            else if(choose =="M" || choose =="m")
+                {
+                    return 12;
                 }
             else
                 {
@@ -758,7 +767,6 @@ Image Edge_Detection(Image &image){
     int h=0;
     int v=0;
     int sum=0;
-    int t=0;
     for(int x=1;x<image.width-1;x++)
        {
             for(int y=1;y<image.height-1;y++)
@@ -834,3 +842,30 @@ Image grey2(Image &image){
 }
 
 
+Image TV(Image &image){
+    int z=2;
+    int time=0;
+    if(image.width>1000)
+        {
+        z=(image.width);
+        while(z>1000)
+            {
+                z=z-1000;
+                time=time+1;
+            }
+        z=5*time;
+        }
+    for(int x=0;x<image.width;x++)
+        {
+            for(int y=0;y<image.height;y++)
+                {
+                    if(y%z==0)
+                        {
+                            image(x,y,0)=0;
+                            image(x,y,1)=0;
+                            image(x,y,2)=0;
+                        }
+                }
+        }
+    return image;
+}
