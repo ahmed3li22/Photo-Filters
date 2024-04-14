@@ -101,15 +101,24 @@ int main(){
                             cout<<"A) Lighten"<<endl;
                             cout<<"B) Darken"<<endl;
                             string choose;
-                            getline(cin,choose);
-                            if(choose =="A" || choose =="a")
-                                {
-                                    whiten(image);
-                                }
-                            else if(choose =="B" || choose =="b")
-                                {
-                                    blacken(image);
-                                }
+                            while(true)
+                            {
+                                getline(cin,choose);
+                                if(choose =="A" || choose =="a")
+                                    {
+                                        whiten(image);
+                                        break;
+                                    }
+                                else if(choose =="B" || choose =="b")
+                                    {
+                                        blacken(image);
+                                        break;
+                                    }
+                                else
+                                    {
+                                       cout<<"Enter the correct choice"<<endl;
+                                    }
+                            }
                         }
                     else if(x==2)
                         {
@@ -120,15 +129,24 @@ int main(){
                             cout<<"A) Horizontal Flip"<<endl;
                             cout<<"B) Vertical Flip"<<endl;
                             string choose;
-                            getline(cin,choose);
-                            if(choose =="A" || choose =="a")
-                                {
-                                    horizontal_flip(image);
-                                }
-                            else if(choose =="B" || choose =="b")
-                                {
-                                    vertical_flip(image);
-                                }
+                            while(true)
+                            {
+                                getline(cin,choose);
+                                if(choose =="A" || choose =="a")
+                                    {
+                                        horizontal_flip(image);
+                                        break;
+                                    }
+                                else if(choose =="B" || choose =="b")
+                                    {
+                                        vertical_flip(image);
+                                        break;
+                                    }
+                                else
+                                    {
+                                        cout<<"Enter the correct choice"<<endl;
+                                    }
+                            }
                         }
                     else if(x==4)
                         {
@@ -137,6 +155,7 @@ int main(){
                     else if(x==5)
                         {
                           crop_image(image);
+                          y=0;
                         }
                     else if(x==6)
                         {
@@ -191,6 +210,7 @@ int main(){
                     else if(x==10)
                         {
                             rotation(image);
+                            y=0;
                         }
                     else if(x==11)
                         {
@@ -206,7 +226,7 @@ int main(){
                         }
                     else if(x==14)
                         {
-
+                            purple(image);
                         }
                     else if(x==15)
                         {
@@ -323,6 +343,7 @@ int main(){
                                             cout<<"Enter a correct choice"<<endl;
                                         }
                                 }
+                            break;
                         }
                     else if(x==17)
                         {
@@ -817,7 +838,6 @@ Image Edge_Detection(Image &image){
     blur2(image);
     Image image2(image.width,image.height);
     int threshold = calculateOtsuThreshold(image);
-    cout<<threshold;
     int h=0;
     int v=0;
     int sum=0;
