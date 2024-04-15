@@ -1,11 +1,12 @@
 /*
-this file contain the menu which shows 5 filters which are grayscale,darken&Lighten
-,black&White,horizontal&vertical flips and Invert colours, also shows save image, load image
-and exit program.
+This file contain the menu which shows 15 filters which are:
+grayscale, darken&Lighten, merge, edge detection, and TV effect         by Marwan Mohamed Hassen Id: 20230387 Section: 19/20
+black&White, horizontal&vertical flip, resize, crop, and sunny effect   by Ahmed Ali Ahmed Somida Id:  20230525 Section: 19/20
+Invert colours, rotation, add frame, blur, and purple effect            by Demiana farid michael Id:  20231230 Section: 19/20
+the menu also shows save image, load image, and exit program. made by Marwan Mohamed Hassen Id: 20230387 Section: 19/20
 
-grayscale and darken&Lighten filters by Marwan Mohamed Hassen Id: 20230387 Section: 19/20
-black&White and horizontal&vertical flips by Ahmed Ali Ahmed Somida Id:  20230525 Section: 19/20
-Invert colours by Demiana farid michael Id:  20231230 Section: 19/20
+Link for the diagram : https://lucid.app/lucidchart/33a205b7-4c69-417f-9fbf-3497db8cdaae/edit?view_items=Cl5s4s1vex0k&invitationId=inv_82b18fb2-97ef-42e1-9a04-0ac4cd7841e6
+Repo link: https://github.com/ahmed3li22/Assignment-3.git
 Emails:2005marwanmohamed@gmail.com "Marwan Mohamed"
        a.semeda4@gmail.com         "Ahmed Ali"
        demianafarid88@gmail.com     "Demiana farid"
