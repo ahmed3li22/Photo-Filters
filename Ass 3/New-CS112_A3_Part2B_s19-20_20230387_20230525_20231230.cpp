@@ -1121,7 +1121,7 @@ Image noise(Image &image){
 }
 
 
-void resizeImage2(Image& image, int newWidth, int newHeight) {
+Image resizeImage2(Image& image, int newWidth, int newHeight) {
     Image resizedImage(newWidth, newHeight);
     for (int i = 0; i < newHeight; i++) {
         for (int j = 0; j < newWidth; j++) {
@@ -1135,8 +1135,8 @@ void resizeImage2(Image& image, int newWidth, int newHeight) {
     image = resizedImage;
 }
 
-Image frame(string filename) {
-    Image image(filename);
+
+Image Frame(Image &image){
     int originalWidth = image.width;
     int originalHeight = image.height;
 
