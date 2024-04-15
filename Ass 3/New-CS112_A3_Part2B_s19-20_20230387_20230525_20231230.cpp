@@ -97,7 +97,7 @@ int main(){
                     y=1;
                     if(x==0)
                         {
-                        grey2(image);
+                        grey(image);
                         }
                     else if(x==1)
                         {
