@@ -219,6 +219,7 @@ int main(){
                     else if(x==11)
                         {
                             image=frame(file);
+                            y=0;
                         }
                     else if(x==12)
                         {
