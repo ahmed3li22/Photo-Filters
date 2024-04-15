@@ -42,11 +42,11 @@ Image TV(Image &image);
 Image rotation(Image &image);
 Image resizeImage(Image& image, int newWidth, int newHeight);
 Image blur(Image &image1);
-Image resizeImage2(Image& image, int newWidth, int newHeight);
-Image Frame(Image &image);
 Image The_Land_Of_Wano(Image &image);
 Image purple(Image &image1);
 Image noise(Image &image);
+Image frame(string filename);
+void resizeImage2(Image& image, int newWidth, int newHeight);
 
 int main(){
     int x;
@@ -218,7 +218,7 @@ int main(){
                         }
                     else if(x==11)
                         {
-                            Frame(image);
+                            image=frame(file);
                         }
                     else if(x==12)
                         {
@@ -429,7 +429,6 @@ int main(){
         }
     return 0;
 }
-
 
 
 int menu(int x){
@@ -1061,54 +1060,6 @@ Image blur(Image &image1) {
 }
 
 
-Image resizeImage2(Image& image, int newWidth, int newHeight) {
-    Image resizedImage(newWidth, newHeight);
-    for (int i = 0; i < newHeight; i++) {
-        for (int j = 0; j < newWidth; j++) {
-            for (int k = 0; k < image.channels; k++) {
-                int original_i = i * image.height / newHeight;
-                int original_j = j * image.width / newWidth;
-                resizedImage(j, i, k) = image(original_j, original_i, k);
-            }
-        }
-    }
-    image = resizedImage;
-}
-
-
-Image Frame(Image &image){
-    int originalWidth = image.width;
-    int originalHeight = image.height;
-
-    int frameColor;
-    cout << "Please enter the color of the frame (0-255): ";
-    cin >> frameColor;
-    int frameSize;
-    cout << "Please enter the size of the frame (in pixels): ";
-    cin >> frameSize;
-
-
-    resizeImage2(image, image.width, image.height);
-
-
-    for (int i = 0; i < image.height; i++) {
-        for (int j = 0; j < image.width; j++) {
-            for (int k = 0; k < image.channels; k++) {
-
-                if (i < frameSize || i >= image.height - frameSize || j < frameSize || j >= image.width - frameSize) {
-                    if ((i + j) % 20 < 10) {
-                        image(j, i, k) = frameColor;
-                    }
-                }
-            }
-        }
-    }
-
-    resizeImage2(image, originalWidth, originalHeight);
-    return image;
-}
-
-
 Image The_Land_Of_Wano(Image &image) {
     double red_multiplier = 1.2;
     double green_multiplier = 1.1;
@@ -1168,3 +1119,50 @@ Image noise(Image &image){
     return image;
 }
 
+
+void resizeImage2(Image& image, int newWidth, int newHeight) {
+    Image resizedImage(newWidth, newHeight);
+    for (int i = 0; i < newHeight; i++) {
+        for (int j = 0; j < newWidth; j++) {
+            for (int k = 0; k < image.channels; k++) {
+                int original_i = i * image.height / newHeight;
+                int original_j = j * image.width / newWidth;
+                resizedImage(j, i, k) = image(original_j, original_i, k);
+            }
+        }
+    }
+    image = resizedImage;
+}
+
+Image frame(string filename) {
+    Image image(filename);
+    int originalWidth = image.width;
+    int originalHeight = image.height;
+
+    int frameColor;
+    cout << "Please enter the color of the frame (0-255): ";
+    cin >> frameColor;
+    int frameSize;
+    cout << "Please enter the size of the frame (in pixels): ";
+    cin >> frameSize;
+
+
+    resizeImage2(image, image.width, image.height);
+
+
+    for (int i = 0; i < image.height; i++) {
+        for (int j = 0; j < image.width; j++) {
+            for (int k = 0; k < image.channels; k++) {
+
+                if (i < frameSize || i >= image.height - frameSize || j < frameSize || j >= image.width - frameSize) {
+                    if ((i + j) % 20 < 10) {
+                        image(j, i, k) = frameColor;
+                    }
+                }
+            }
+        }
+    }
+
+    resizeImage2(image, originalWidth, originalHeight);
+    return image;
+}
